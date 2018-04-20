@@ -22,6 +22,38 @@ function createWindow () {
     slashes: true
   }))
 
+    let modalOptions = {
+        width: 500,
+        height: 500,
+        resizable: false,
+        modal: true,
+        minimizable: false,
+        maximizable: false,
+        fullscreenable: false,
+        alwaysOnTop: true,
+        parent: mainWindow,
+        movable: false,
+        transparent: true,
+        useContentSize: true
+    };
+
+    let modalDialog = new BrowserWindow(modalOptions)
+    modalDialog.loadURL(url.format({
+        pathname: path.join(__dirname, 'full.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
+    modalDialog.setMenu(null);
+    modalDialog.openDevTools()
+    modalDialog.setContentSize(700,700)
+
+    // and load the index.html of the app.
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'index.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
+
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
